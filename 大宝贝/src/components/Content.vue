@@ -87,6 +87,10 @@ export default {
       selectFile.click()
     },
     register(){
+      if(!this.registerPass || !this.registerUser){
+        this.filesNum = '用户名或密码不能为空'
+        return
+      }
       let formData = new FormData()
       let username = this.registerUser
       let password = this.registerPass
@@ -114,6 +118,10 @@ export default {
       this.registerUser=''
     },
     login(){
+      if(!this.loginPass || !this.loginUser){
+        this.filesNum = '用户名或密码不能为空'
+        return
+      }
       let formdata = new FormData()
       formdata.append('username',this.loginUser)
       formdata.append('password',this.loginPass)
@@ -126,6 +134,7 @@ export default {
         }
       }).then(res => {
         if(res.data.messageid === 200){
+          console.log(res);
           this.filesNum = '选择要上传的文件'
           this.logo = 1
         }
@@ -167,7 +176,7 @@ export default {
   color:#eef5f7;
   margin:auto;
   border:none;
-  border-radius:15%;
+  border-radius:15px 15px 15px 15px;
 }
 
 .content .btn1{
@@ -191,8 +200,8 @@ input{
   color:#000000;
   margin:0 auto 10px;
   border:1px solid #000000;
-  border-radius:10%;
   text-align: center;
+  border-radius:15px 15px 15px 15px;
 }
 
 input[type='file']{
